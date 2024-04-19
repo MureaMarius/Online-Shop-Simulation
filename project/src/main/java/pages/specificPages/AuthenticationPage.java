@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.definitions.LoginPageDefinition;
 
-import java.time.Duration;
 
 public class AuthenticationPage {
     WebDriver webDriver;

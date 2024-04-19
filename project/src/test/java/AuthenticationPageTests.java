@@ -14,10 +14,9 @@ import utilities.Functions;
 
 import java.util.List;
 
-public class LoginTests {
+public class AuthenticationPageTests {
     WebDriver driver;
     AuthenticationPage authenticationPage;
-    Accounts accounts;
 
     @BeforeTest
     public void setUp() {
@@ -105,6 +104,20 @@ public class LoginTests {
                     throw new Exception("Not expected user!");
             }
         }
+    }
+
+    @Test
+    public void testLogOut() {
+        String username = new Accounts().getUsernames().get(0);
+        String password = new Accounts().getPassword();
+
+        authenticationPage.login(username, password);
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.HOME_PAGE_AFTER_LOGIN), "Not expected page after Log-In with SUCCESS. \n" +
+                "The expected page should be: " + PagesDefinition.HOME_PAGE_AFTER_LOGIN + " but found: " + driver.getCurrentUrl());
+
+        authenticationPage.logout();
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.LOGIN_PAGE), "Not expected page after Log-Out with SUCCESS. \n" +
+                "The expected page should be: " + PagesDefinition.LOGIN_PAGE + " but found: " + driver.getCurrentUrl());
     }
 
     @AfterTest
