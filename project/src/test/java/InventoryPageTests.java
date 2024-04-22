@@ -1,6 +1,8 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pages.definitions.InventoryPageDefinition;
 import pages.definitions.PagesDefinition;
 import pages.specificPages.AuthenticationPage;
 import pages.specificPages.InventoryPage;
@@ -34,6 +36,7 @@ public class InventoryPageTests {
                 "adding them into the cart.\n The expected number should be: 1" + " but found: " + actualNumberOfProductsAdded);
 
         new InventoryPage(driver).removeFromCart(true);
+        actualNumberOfProductsAdded = new InventoryPage(driver).getNumberOfProductsAdded();
         Assert.assertEquals(actualNumberOfProductsAdded, "0", "Not expected number of products after " +
                 "removing them into the cart.\n The expected number should be: 0" + " but found: " + actualNumberOfProductsAdded);
     }
@@ -47,8 +50,28 @@ public class InventoryPageTests {
                 "adding them into the cart.\n The expected number should be: 6" + " but found: " + actualNumberOfProductsAdded);
 
         new InventoryPage(driver).removeFromCart(false);
+        actualNumberOfProductsAdded = new InventoryPage(driver).getNumberOfProductsAdded();
         Assert.assertEquals(actualNumberOfProductsAdded, "0", "Not expected number of products after " +
                 "removing them into the cart.\n The expected number should be: 0" + " but found: " + actualNumberOfProductsAdded);
+    }
+
+    @Test
+    public void testRemoveProductFromCart() {
+        new InventoryPage(driver).addToCart(true);
+        new InventoryPage(driver).removeFromCart(true);
+
+        String actualNumberOfProductsAdded = new InventoryPage(driver).getNumberOfProductsAdded();
+        Assert.assertEquals(actualNumberOfProductsAdded, "0", "Not expected number of products after " +
+                "removing them into the cart.\n The expected number should be: 0" + " but found: " + actualNumberOfProductsAdded);
+    }
+
+    @Test
+    public void testTitlePresenceOnInventoryPage() {
+        String actualTitle = driver.findElement(By.cssSelector(InventoryPageDefinition.TITLE_INVENTORY_PAGE_SELECTOR)).getText();
+        String expectedTitle = InventoryPageDefinition.TITLE_INVENTORY_PAGE;
+
+        Assert.assertEquals(actualTitle, expectedTitle, "Not expected title on the inventory page. The expected " +
+                "title should be: " + expectedTitle + " but found: " + actualTitle);
     }
 
     @AfterMethod

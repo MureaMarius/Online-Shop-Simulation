@@ -64,7 +64,12 @@ public class InventoryPage {
     }
 
     public String getNumberOfProductsAdded() {
-        return  webDriver.findElement(shoppingCartProductsAdded).getText();
+        if (!webDriver.findElements(shoppingCartProductsAdded).isEmpty()) {
+            return webDriver.findElement(shoppingCartProductsAdded).getText();
+        }
+        else {
+            return "0";
+        }
     }
 
 }
