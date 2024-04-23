@@ -81,8 +81,48 @@ public class InventoryPageTests {
                 "The expected number should be: 4. But found: " + actualNumberOfMenuItems);
     }
 
+    @Test
+    public void testResetAppState() throws InterruptedException {
+        new InventoryPage(driver).resetAppStateFunction();
+
+        String actualNumberOfProductsAdded = new InventoryPage(driver).getNumberOfProductsAdded();
+        Assert.assertEquals(actualNumberOfProductsAdded, "0", "Not expected number of products after " +
+                "adding them into the cart.\n The expected number should be: 0" + " but found: " + actualNumberOfProductsAdded);
+    }
+
+    @Test
+    public void testRedirectAllItemsPage() throws Exception {
+        new InventoryPage(driver).redirectPages("All Items");
+
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.HOME_PAGE_AFTER_LOGIN), "Not expected page " +
+                "after clicking on the \"All Items\" button. The expected page should: " + PagesDefinition.HOME_PAGE_AFTER_LOGIN + " but found: " +
+                driver.getCurrentUrl());
+    }
+
+    @Test
+    public void testRedirectAboutPage() throws Exception {
+        new InventoryPage(driver).redirectPages("About");
+
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.OFFICIAL_SAUCE_LABS_PAGE), "Not expected page " +
+                "after clicking on the \"About\" button. The expected page should: " + PagesDefinition.OFFICIAL_SAUCE_LABS_PAGE + " but found: " +
+                driver.getCurrentUrl());
+    }
+
+    @Test
+    public void testRedirectCartPage() throws Exception {
+        new InventoryPage(driver).redirectPages("Cart");
+
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.CART_PAGE), "Not expected page " +
+                "after clicking on the \"About\" button. The expected page should: " + PagesDefinition.CART_PAGE + " but found: " +
+                driver.getCurrentUrl());
+    }
+
     @AfterMethod
     public void logout() {
+        if (!driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.HOME_PAGE_AFTER_LOGIN)){
+            driver.navigate().back();
+        }
+
         authenticationPage.logout();
     }
 
