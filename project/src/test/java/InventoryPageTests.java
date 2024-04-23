@@ -74,6 +74,13 @@ public class InventoryPageTests {
                 "title should be: " + expectedTitle + " but found: " + actualTitle);
     }
 
+    @Test
+    public void testNumberOfItemsInTheMenuElements() {
+        int actualNumberOfMenuItems = new InventoryPage(driver).getNumberOfMenuItems();
+        Assert.assertEquals(actualNumberOfMenuItems, 4, "Not expected number of items in the menu section. " +
+                "The expected number should be: 4. But found: " + actualNumberOfMenuItems);
+    }
+
     @AfterMethod
     public void logout() {
         authenticationPage.logout();

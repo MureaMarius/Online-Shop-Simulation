@@ -72,4 +72,9 @@ public class InventoryPage {
         }
     }
 
+    public int getNumberOfMenuItems() {
+        webDriver.findElement(By.cssSelector(InventoryPageDefinition.MENU_INVENTORY_PAGE_SELECTOR));
+        return webDriver.findElement(By.cssSelector(InventoryPageDefinition.MENU_INVENTORY_PAGE_LIST_SELECTOR)).
+                findElements(By.cssSelector("a")).size();
+    }
 }
