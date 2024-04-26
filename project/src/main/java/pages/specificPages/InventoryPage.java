@@ -31,23 +31,23 @@ public class InventoryPage {
         List<WebElement> listOfProductsElements = webDriver.findElements(inventoryList);
 
         if(oneProduct) {
-/*            String productName = listOfProductsElements.get(0).findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_NAME_SELECTOR)).getText();
+            String productName = listOfProductsElements.get(0).findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_NAME_SELECTOR)).getText();
             String productDescription = listOfProductsElements.get(0).findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_DESCRIPTION_SELECTOR)).getText();
             String productPrice = listOfProductsElements.get(0).findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_PRICE_SELECTOR)).getText();
 
             Product product = new Product(productName, productDescription, productPrice);
-            products.add(product);*/
+            products.add(product);
 
             listOfProductsElements.get(0).findElement(addToCartButton).click();
         }
         else {
             for (WebElement webElement: listOfProductsElements) {
-/*                String productName = webElement.findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_NAME_SELECTOR)).getText();
+                String productName = webElement.findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_NAME_SELECTOR)).getText();
                 String productDescription = webElement.findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_DESCRIPTION_SELECTOR)).getText();
                 String productPrice = webElement.findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_PRICE_SELECTOR)).getText();
 
                 Product product = new Product(productName, productDescription, productPrice);
-                products.add(product);*/
+                products.add(product);
 
                 webElement.findElement(addToCartButton).click();
             }
@@ -68,7 +68,7 @@ public class InventoryPage {
     }
 
     public String getNumberOfProductsAdded() {
-        if (!webDriver.findElements(shoppingCartProductsAdded).isEmpty()) {
+        if (!webDriver.findElements(shoppingCartProductsAdded).isEmpty() && !webDriver.findElement(shoppingCartProductsAdded).getText().equalsIgnoreCase("")) {
             return webDriver.findElement(shoppingCartProductsAdded).getText();
         }
         else {

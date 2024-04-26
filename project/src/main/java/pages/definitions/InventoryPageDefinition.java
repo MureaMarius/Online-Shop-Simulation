@@ -12,6 +12,8 @@ public class InventoryPageDefinition {
 
     public static String TITLE_INVENTORY_PAGE_SELECTOR = "#header_container > div.primary_header > div.header_label";
     public static String TITLE_INVENTORY_PAGE = "Swag Labs";
+    public static String TITLE_HEADER_SELECTOR = "#header_container > div.header_secondary_container > span";
+    public static String TITLE_HEADER_VALUE = "Products";
 
     public static String MENU_INVENTORY_PAGE_SELECTOR = ".bm-burger-button";
     public static String MENU_INVENTORY_PAGE_LIST_SELECTOR = "nav.bm-item-list";

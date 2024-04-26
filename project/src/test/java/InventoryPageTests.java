@@ -75,6 +75,15 @@ public class InventoryPageTests {
     }
 
     @Test
+    public void testTitleOnHeader() {
+        String actualTitle = driver.findElement(By.cssSelector(InventoryPageDefinition.TITLE_HEADER_SELECTOR)).getText();
+        String expectedTitle = InventoryPageDefinition.TITLE_HEADER_VALUE;
+
+        Assert.assertEquals(actualTitle, expectedTitle, "Not expected title on the header inventory page. The expected " +
+                "title should be: " + expectedTitle + " but found: " + actualTitle);
+    }
+
+    @Test
     public void testNumberOfItemsInTheMenuElements() {
         int actualNumberOfMenuItems = new InventoryPage(driver).getNumberOfMenuItems();
         Assert.assertEquals(actualNumberOfMenuItems, 4, "Not expected number of items in the menu section. " +
