@@ -126,6 +126,30 @@ public class InventoryPageTests {
                 driver.getCurrentUrl());
     }
 
+    @Test
+    public void testFilterByNameAscendingOrder() throws Exception {
+        Assert.assertTrue(new InventoryPage(driver).filteringProducts("ASCENDING NAME"), "Not expected order for " +
+                "the products when filtering by Name in ascending order is selected!");
+    }
+
+    @Test
+    public void testFilterByNameDescendingOrder() throws Exception {
+        Assert.assertTrue(new InventoryPage(driver).filteringProducts("DESCENDING NAME"), "Not expected order for " +
+                "the products when filtering by Name in descending order is selected!");
+    }
+
+    @Test
+    public void testFilterByPriceAscendingOrder() throws Exception {
+        Assert.assertTrue(new InventoryPage(driver).filteringProducts("ASCENDING PRICE"), "Not expected order for " +
+                "the products when filtering by Price in ascending order is selected!");
+    }
+
+    @Test
+    public void testFilterByPriceDescendingOrder() throws Exception {
+        Assert.assertTrue(new InventoryPage(driver).filteringProducts("DESCENDING PRICE"), "Not expected order for " +
+                "the products when filtering by Price in descending order is selected!");
+    }
+
     @AfterMethod
     public void logout() {
         if (!driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.HOME_PAGE_AFTER_LOGIN)){

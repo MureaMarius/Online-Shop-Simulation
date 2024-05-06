@@ -22,4 +22,9 @@ public class InventoryPageDefinition {
     public static String ABOUT_BUTTON = "#about_sidebar_link";
     public static String RESET_APP_STATE_BUTTON = "#reset_sidebar_link";
     public static String CLOSE_MENU_BUTTON = ".bm-cross-button";
+
+    public static String FILTER_ASCENDING_ORDER_NAME_SELECTOR = "#header_container > div.header_secondary_container > div > span > select > option:nth-child(1)";
+    public static String FILTER_DESCENDING_ORDER_NAME_SELECTOR = "#header_container > div.header_secondary_container > div > span > select > option:nth-child(2)";
+    public static String FILTER_ASCENDING_ORDER_PRICE_SELECTOR = "#header_container > div.header_secondary_container > div > span > select > option:nth-child(3)";
+    public static String FILTER_DESCENDING_ORDER_PRICE_SELECTOR = "#header_container > div.header_secondary_container > div > span > select > option:nth-child(4)";
 }

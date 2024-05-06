@@ -3,9 +3,9 @@ package models;
 public class Product {
     private String productName;
     private String productDescription;
-    private String productPrice;
+    private float productPrice;
 
-    public Product(String productName, String productDescription, String productPrice) {
+    public Product(String productName, String productDescription, float productPrice) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productPrice = productPrice;
@@ -27,11 +27,11 @@ public class Product {
         this.productDescription = productDescription;
     }
 
-    public String getProductPrice() {
+    public float getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(float productPrice) {
         this.productPrice = productPrice;
     }
 }
