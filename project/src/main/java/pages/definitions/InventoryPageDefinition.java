@@ -27,4 +27,11 @@ public class InventoryPageDefinition {
     public static String FILTER_DESCENDING_ORDER_NAME_SELECTOR = "#header_container > div.header_secondary_container > div > span > select > option:nth-child(2)";
     public static String FILTER_ASCENDING_ORDER_PRICE_SELECTOR = "#header_container > div.header_secondary_container > div > span > select > option:nth-child(3)";
     public static String FILTER_DESCENDING_ORDER_PRICE_SELECTOR = "#header_container > div.header_secondary_container > div > span > select > option:nth-child(4)";
+
+    public static String TWITTER_REDIRECT_BUTTON = "#page_wrapper > footer > ul > li.social_twitter";
+    public static String FACEBOOK_REDIRECT_BUTTON = "#page_wrapper > footer > ul > li.social_facebook";
+    public static String LINKEDIN_REDIRECT_BUTTON = "#page_wrapper > footer > ul > li.social_linkedin";
+    public static String FOOTER_TEXT_SELECTOR = "#page_wrapper > footer > div";
+
+    public static String FOOTER_TEXT = "© 2024 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy";
 }

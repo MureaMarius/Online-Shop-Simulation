@@ -29,6 +29,11 @@ public class InventoryPage {
     private final By filterByPriceAscOrder = By.cssSelector(InventoryPageDefinition.FILTER_ASCENDING_ORDER_PRICE_SELECTOR);
     private final By filterByPriceDescOrder = By.cssSelector(InventoryPageDefinition.FILTER_DESCENDING_ORDER_PRICE_SELECTOR);
 
+    private final By twitterRedirectButton = By.cssSelector(InventoryPageDefinition.TWITTER_REDIRECT_BUTTON);
+    private final By facebookRedirectButton = By.cssSelector(InventoryPageDefinition.FACEBOOK_REDIRECT_BUTTON);
+    private final By linkedinRedirectButton = By.cssSelector(InventoryPageDefinition.LINKEDIN_REDIRECT_BUTTON);
+    private final By textFooter = By.cssSelector(InventoryPageDefinition.FOOTER_TEXT_SELECTOR);
+
     public InventoryPage(WebDriver webDriver) {
         this.webDriver = webDriver;
         products = new ArrayList<>();
@@ -99,6 +104,18 @@ public class InventoryPage {
 
             case "Cart":
                 webDriver.findElement(shoppingCartProductsAdded).click();
+                break;
+
+            case "TWITTER":
+                webDriver.findElement(twitterRedirectButton).click();
+                break;
+
+            case "FACEBOOK":
+                webDriver.findElement(facebookRedirectButton).click();
+                break;
+
+            case "LINKEDIN":
+                webDriver.findElement(linkedinRedirectButton).click();
                 break;
 
             default:

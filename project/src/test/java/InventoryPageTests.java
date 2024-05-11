@@ -9,6 +9,9 @@ import pages.specificPages.InventoryPage;
 import singleton.WebDriverSingleton;
 import utilities.Accounts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class InventoryPageTests {
     WebDriver driver;
     AuthenticationPage authenticationPage;
@@ -127,6 +130,45 @@ public class InventoryPageTests {
     }
 
     @Test
+    public void testRedirectToTwitterPage() throws Exception {
+        new InventoryPage(driver).redirectPages("TWITTER");
+
+        List<String> browserTabs = new ArrayList<> (driver.getWindowHandles());
+        driver.switchTo().window(browserTabs.get(1));
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.TWITTER_PAGE), "Not expected page " +
+                "after clicking on the \"TWITTER\" button. The expected page should: " + PagesDefinition.TWITTER_PAGE + " but found: " +
+                driver.getCurrentUrl());
+
+        driver.switchTo().window(browserTabs.get(0));
+    }
+
+    @Test
+    public void testRedirectToFacebookPage() throws Exception {
+        new InventoryPage(driver).redirectPages("FACEBOOK");
+
+        List<String> browserTabs = new ArrayList<> (driver.getWindowHandles());
+        driver.switchTo().window(browserTabs.get(1));
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.FACEBOOK_PAGE), "Not expected page " +
+                "after clicking on the \"FACEBOOK\" button. The expected page should: " + PagesDefinition.FACEBOOK_PAGE + " but found: " +
+                driver.getCurrentUrl());
+
+        driver.switchTo().window(browserTabs.get(0));
+    }
+
+    @Test
+    public void testRedirectToLinkedinPage() throws Exception {
+        new InventoryPage(driver).redirectPages("LINKEDIN");
+
+        List<String> browserTabs = new ArrayList<> (driver.getWindowHandles());
+        driver.switchTo().window(browserTabs.get(1));
+        Assert.assertTrue(driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.LINKEDIN_PAGE), "Not expected page " +
+                "after clicking on the \"LINKEDIN\" button. The expected page should: " + PagesDefinition.LINKEDIN_PAGE + " but found: " +
+                driver.getCurrentUrl());
+
+        driver.switchTo().window(browserTabs.get(0));
+    }
+
+    @Test
     public void testFilterByNameAscendingOrder() throws Exception {
         Assert.assertTrue(new InventoryPage(driver).filteringProducts("ASCENDING NAME"), "Not expected order for " +
                 "the products when filtering by Name in ascending order is selected!");
@@ -148,6 +190,14 @@ public class InventoryPageTests {
     public void testFilterByPriceDescendingOrder() throws Exception {
         Assert.assertTrue(new InventoryPage(driver).filteringProducts("DESCENDING PRICE"), "Not expected order for " +
                 "the products when filtering by Price in descending order is selected!");
+    }
+
+    @Test
+    public void testFooterText() {
+        String actualFooterText = driver.findElement(By.cssSelector(InventoryPageDefinition.FOOTER_TEXT_SELECTOR)).getText();
+
+        Assert.assertEquals(actualFooterText, InventoryPageDefinition.FOOTER_TEXT, "Not expected footer text. The" +
+                " expected text should be: " + InventoryPageDefinition.FOOTER_TEXT + ", but found: " + actualFooterText);
     }
 
     @AfterMethod
