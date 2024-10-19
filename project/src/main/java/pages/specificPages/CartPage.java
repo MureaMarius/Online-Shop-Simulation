@@ -10,7 +10,6 @@ import pages.definitions.PagesDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class CartPage {
     WebDriver webDriver;

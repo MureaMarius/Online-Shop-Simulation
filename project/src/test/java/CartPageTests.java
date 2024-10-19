@@ -30,7 +30,7 @@ public class CartPageTests {
     public void testAddOneProductToCart() {
         new InventoryPage(driver).addToCart(true);
         driver.get(PagesDefinition.CART_PAGE);
-
+        
         int actualNumberOfProduts = new CartPage(driver).getNumberOfProductsFromCart();
         Assert.assertEquals(actualNumberOfProduts, 1, "Not expected number of products in the Cart. \n" +
                 "The expected number should be: 1, " + "but found: " + actualNumberOfProduts);
