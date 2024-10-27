@@ -8,6 +8,8 @@ import pages.specificPages.InventoryPage;
 import singleton.WebDriverSingleton;
 import utilities.Accounts;
 
+import static pages.definitions.PagesDefinition.HOME_PAGE_AFTER_LOGIN;
+
 public class CartPageTests {
     WebDriver driver;
     AuthenticationPage authenticationPage;
@@ -35,7 +37,8 @@ public class CartPageTests {
         Assert.assertEquals(actualNumberOfProduts, 1, "Not expected number of products in the Cart. \n" +
                 "The expected number should be: 1, " + "but found: " + actualNumberOfProduts);
 
-        new CartPage(driver).removeAllProductsFromCart();
+        driver.get(HOME_PAGE_AFTER_LOGIN);
+        new InventoryPage(driver).removeFromCart(true);
     }
 
     @Test
@@ -47,12 +50,34 @@ public class CartPageTests {
         Assert.assertEquals(actualNumberOfProduts, 6, "Not expected number of products in the Cart. \n" +
                 "The expected number should be: 6, " + "but found: " + actualNumberOfProduts);
 
+        driver.get(HOME_PAGE_AFTER_LOGIN);
+        new InventoryPage(driver).removeFromCart(false);
+    }
+
+    @Test
+    public void testRedirectToShoppingPage() {
+        driver.get(PagesDefinition.CART_PAGE);
+        new CartPage(driver).goBackToShopping();
+
+        Assert.assertEquals(driver.getCurrentUrl(), HOME_PAGE_AFTER_LOGIN, "Not expected page after clicking the \"Continue shopping\" button. " +
+                "Check this feature manually");
+    }
+
+    @Test
+    public void testRemoveProductsFromCart() {
+        new InventoryPage(driver).addToCart(false);
+        driver.get(PagesDefinition.CART_PAGE);
+
         new CartPage(driver).removeAllProductsFromCart();
+
+        int actualNumberOfProduts = new CartPage(driver).getNumberOfProductsFromCart();
+        Assert.assertEquals(actualNumberOfProduts, 0, "Not expected number of products in the Cart. \n" +
+                "The expected number should be: 0, " + "but found: " + actualNumberOfProduts);
     }
 
     @AfterMethod
     public void logout() {
-        if (!driver.getCurrentUrl().equalsIgnoreCase(PagesDefinition.HOME_PAGE_AFTER_LOGIN)) {
+        if (!driver.getCurrentUrl().equalsIgnoreCase(HOME_PAGE_AFTER_LOGIN)) {
             driver.navigate().back();
         }
 
