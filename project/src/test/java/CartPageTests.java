@@ -1,3 +1,4 @@
+import models.Product;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -7,6 +8,7 @@ import pages.specificPages.CartPage;
 import pages.specificPages.InventoryPage;
 import singleton.WebDriverSingleton;
 import utilities.Accounts;
+import java.util.List;
 
 import static pages.definitions.PagesDefinition.HOME_PAGE_AFTER_LOGIN;
 
@@ -73,6 +75,24 @@ public class CartPageTests {
         int actualNumberOfProduts = new CartPage(driver).getNumberOfProductsFromCart();
         Assert.assertEquals(actualNumberOfProduts, 0, "Not expected number of products in the Cart. \n" +
                 "The expected number should be: 0, " + "but found: " + actualNumberOfProduts);
+    }
+
+    @Test
+    public void testListOfProductsAdded() {
+        InventoryPage inventoryPage = new InventoryPage(driver);
+        CartPage cartPage = new CartPage(driver);
+
+        inventoryPage.addToCart(false);
+        inventoryPage.extractProductsDetails();
+
+        List<Product> expectedProducts = inventoryPage.getProducts();
+
+        driver.get(PagesDefinition.CART_PAGE);
+
+        cartPage.extractProductsDetails();
+        List<Product> actualProducts = cartPage.getProducts();
+
+
     }
 
     @AfterMethod

@@ -185,4 +185,20 @@ public class InventoryPage {
 
         return false;
     }
+
+    public void extractProductsDetails() {
+        List<WebElement> listOfProductsElements = webDriver.findElements(inventoryList);
+
+        for (WebElement webElement: listOfProductsElements) {
+            String productName = webElement.findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_NAME_SELECTOR)).getText();
+            String productDescription = webElement.findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_DESCRIPTION_SELECTOR)).getText();
+            String productPrice = webElement.findElement(By.cssSelector(InventoryPageDefinition.INVENTORY_ITEM_PRICE_SELECTOR)).getText();
+
+            products.add(new Product(productName, productDescription, Float.parseFloat(productPrice.substring(1))));
+        }
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
 }
