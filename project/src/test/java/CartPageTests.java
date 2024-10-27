@@ -92,7 +92,11 @@ public class CartPageTests {
         cartPage.extractProductsDetails();
         List<Product> actualProducts = cartPage.getProducts();
 
-
+        for (int i = 0; i < expectedProducts.size(); i++) {
+            Assert.assertEquals(expectedProducts.get(i).getProductName(), actualProducts.get(i).getProductName());
+            Assert.assertEquals(expectedProducts.get(i).getProductDescription(), actualProducts.get(i).getProductDescription());
+            Assert.assertEquals(expectedProducts.get(i).getProductPrice(), actualProducts.get(i).getProductPrice());
+        }
     }
 
     @AfterMethod
